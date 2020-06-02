@@ -1,3 +1,3 @@
-module pancake.maker
+module pancake
 
 go 1.14
