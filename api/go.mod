@@ -1,4 +1,4 @@
-module pancake
+module github.com/ochaochaocha3/pancake
 
 go 1.14
 

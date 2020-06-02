@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package pancake;
 
 option go_package = "gen/api";
