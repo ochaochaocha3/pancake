@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+lib_pancake_dir = File.expand_path(File.join('..', 'lib', 'pancake'), __dir__)
+$LOAD_PATH.unshift(lib_pancake_dir) unless $LOAD_PATH.include?(lib_pancake_dir)
+
+require 'bundler/setup'
+
+require 'logger'
+require 'optparse'
+
+require 'grpc'
+
+require 'baker'
+
+# RubyLogger defines a logger for gRPC based on the standard ruby logger.
+module RubyLogger
+  def logger
+    LOGGER
+  end
+
+  LOGGER = Logger.new($stdout)
+end
+
+# GRPC is the general RPC module
+module GRPC
+  # Inject the noop #logger if no module-level logger method has been injected.
+  extend RubyLogger
+end
+
+host = 'localhost:50051'
+
+opts = OptionParser.new
+
+opts.on('-b', '--bind', '<hostname>:<port>') do |value|
+  host = value
+end
+
+opts.parse!
+
+server = GRPC::RpcServer.new
+server.add_http2_port(host, :this_port_is_insecure)
+server.handle(Pancake::Baker.new)
+
+GRPC.logger.info("Running on #{host}")
+
+server.run_till_terminated_or_interrupted(%w(SIGINT SIGTERM), 60)
