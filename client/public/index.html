@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pancake</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="main-container">
+      <h1>Pancake service</h1>
+      <form action="/pancake" method="POST">
+        <fieldset>
+          <legend>Bake</legend>
+          <p>
+            Menu
+            <select name="menu">
+              <option value="classic">Classic</option>
+              <option value="banana_and_whip">Banana and whip</option>
+              <option value="bacon_and_cheese">Bacon and cheese</option>
+              <option value="mix_berry">Mix berry</option>
+              <option value="baked_marshmallow">Baked marshmallow</option>
+              <option value="spicy_curry">Spicy curry</option>
+            </select>
+          </p>
+          <p><button type="submit">Bake</button></p>
+        </fieldset>
+      </form>
+      <p><a href="/report">Report</a></p>
+    </div>
+  </body>
+</html>

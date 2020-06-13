@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pancake has been baked!</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="main-container">
+      <h1>Pancake has been baked!</h1>
+      <table class="table pancake-summary">
+        <caption>Summary of the baked pancake</caption>
+        <tbody>
+          <tr>
+            <th scope="row">Menu</th>
+            <td><%= menu %></td>
+          </tr>
+          <tr>
+            <th scope="row">Chef</th>
+            <td><%= chef %>
+          </tr>
+          <tr>
+            <th scope="row">Technical score</th>
+            <td><%= '%.2f' % technical_score %></td>
+          </tr>
+          <tr>
+            <th scope="row">Baked at</th>
+            <td><%= create_time %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><a href="/">Home</a></p>
+    </div>
+  </body>
+</html>

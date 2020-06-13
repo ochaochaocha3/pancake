@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Report about baked pancakes</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="main-container">
+      <h1>Report about baked pancakes</h1>
+      <% if bake_counts.empty? %>
+        <p>There are no baked pancakes!</p>
+      <% else %>
+        <table class="table pancake-report">
+          <thead>
+            <tr>
+              <th>Menu</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% bake_counts.each do |c| %>
+              <tr>
+                <td><%= c.menu %></td>
+                <td><%= c.count %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+
+      <p><a href="/">Home</a></p>
+    </div>
+  </body>
+</html>
