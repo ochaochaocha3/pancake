@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/ptypes/timestamp"
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
@@ -18,7 +19,9 @@ func init() {
 }
 
 type BakerHandler struct {
-	report *report
+	server   *grpc.Server
+	stopChan chan bool
+	report   *report
 }
 
 type report struct {
@@ -26,8 +29,10 @@ type report struct {
 	data map[api.Pancake_Menu]int
 }
 
-func NewBakerHandler() *BakerHandler {
+func NewBakerHandler(server *grpc.Server, stopChan chan bool) *BakerHandler {
 	return &BakerHandler{
+		server:   server,
+		stopChan: stopChan,
 		report: &report{
 			data: map[api.Pancake_Menu]int{},
 		},
@@ -89,4 +94,12 @@ func (h *BakerHandler) Report(
 			BakeCounts: counts,
 		},
 	}, nil
+}
+
+func (h *BakerHandler) Stop(
+	ctx context.Context,
+	req *api.StopRequest,
+) (*api.StopResponse, error) {
+	h.stopChan <- true
+	return &api.StopResponse{}, nil
 }

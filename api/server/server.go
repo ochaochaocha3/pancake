@@ -24,9 +24,10 @@ func main() {
 	}
 
 	server := grpc.NewServer()
+	stopChan := make(chan bool)
 	api.RegisterPancakeBakerServiceServer(
 		server,
-		handler.NewBakerHandler(),
+		handler.NewBakerHandler(server, stopChan),
 	)
 	reflection.Register(server)
 
@@ -35,9 +36,14 @@ func main() {
 		server.Serve(lis)
 	}()
 
-	quit := make(chan os.Signal)
-	signal.Notify(quit, os.Interrupt)
-	<-quit
+	intChan := make(chan os.Signal)
+	signal.Notify(intChan, os.Interrupt)
+
+	select {
+	case <-stopChan:
+	case <-intChan:
+	}
+
 	log.Println("stopping gRPC server...")
 	server.GracefulStop()
 }

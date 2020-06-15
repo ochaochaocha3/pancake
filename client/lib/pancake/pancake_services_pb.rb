@@ -19,6 +19,8 @@ module Pancake
       rpc :Bake, BakeRequest, BakeResponse
       # Report はメニューごとに焼いたパンケーキの数を返します。
       rpc :Report, ReportRequest, ReportResponse
+      # Stop はサーバを停止します。
+      rpc :Stop, StopRequest, StopResponse
     end
 
     Stub = Service.rpc_stub_class

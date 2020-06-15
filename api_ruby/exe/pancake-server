@@ -39,7 +39,7 @@ opts.parse!
 
 server = GRPC::RpcServer.new
 server.add_http2_port(host, :this_port_is_insecure)
-server.handle(Pancake::Baker.new)
+server.handle(Pancake::Baker.new(server))
 
 GRPC.logger.info("Running on #{host}")
 

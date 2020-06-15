@@ -39,6 +39,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "pancake.ReportResponse" do
       optional :report, :message, 1, "pancake.Report"
     end
+    add_message "pancake.StopRequest" do
+    end
+    add_message "pancake.StopResponse" do
+    end
   end
 end
 
@@ -51,4 +55,6 @@ module Pancake
   BakeResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pancake.BakeResponse").msgclass
   ReportRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pancake.ReportRequest").msgclass
   ReportResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pancake.ReportResponse").msgclass
+  StopRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pancake.StopRequest").msgclass
+  StopResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pancake.StopResponse").msgclass
 end

@@ -55,3 +55,10 @@ post '/pancake' do
     create_time: Time.at(response.pancake.create_time.seconds),
   })
 end
+
+post '/stop' do
+  request = Pancake::StopRequest.new
+  response = stub.stop(request)
+
+  'Server has been shutdown!'
+end

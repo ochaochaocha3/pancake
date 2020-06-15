@@ -13,6 +13,9 @@ service PancakeBakerService {
 
 	// Report はメニューごとに焼いたパンケーキの数を返します。
 	rpc Report(ReportRequest) returns (ReportResponse) {}
+
+	// Stop はサーバを停止します。
+	rpc Stop(StopRequest) returns (StopResponse) {}
 }
 
 // Pancake は一枚一枚の焼かれたパンケーキを表します。
@@ -64,3 +67,7 @@ message ReportRequest {}
 message ReportResponse {
 	Report report = 1;
 }
+
+message StopRequest {}
+
+message StopResponse {}

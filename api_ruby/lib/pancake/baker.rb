@@ -29,7 +29,9 @@ module Pancake
       end
     end
 
-    def initialize
+    def initialize(server)
+      @server = server
+
       @report = Report.new
     end
 
@@ -63,6 +65,11 @@ module Pancake
     def report(_request, _call)
       report_obj = @report.to_proto_obj
       ReportResponse.new(report: report_obj)
+    end
+
+    def stop(_request, _call)
+      @server.stop
+      StopResponse.new
     end
   end
 end
