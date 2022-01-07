@@ -3,7 +3,7 @@ GEM
   specs:
     backports (3.17.2)
     erubi (1.9.0)
-    google-protobuf (3.12.2)
+    google-protobuf (3.19.2)
     googleapis-common-protos-types (1.0.5)
       google-protobuf (~> 3.11)
     grpc (1.28.0)
